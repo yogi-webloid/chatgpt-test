@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>タスク管理</title>
+    <style>
+    body { font-family: sans-serif; }
+    li.completed { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+<h1>タスク一覧</h1>
+<ul>
+{% for task in tasks %}
+    <li class="{{ 'completed' if task.done }}">
+        {{ loop.index }}. {{ task.name }} ({{ task.points }} pts)
+        {% if not task.done %}
+        <form action="/tasks/{{ loop.index }}/done" method="post" style="display:inline;">
+            <button type="submit">完了</button>
+        </form>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+
+<h2>新しいタスクを追加</h2>
+<form action="/tasks" method="post">
+    <input type="text" name="name" placeholder="タスク名" required>
+    <input type="number" name="points" value="10" min="1">
+    <button type="submit">追加</button>
+</form>
+
+<p>現在のポイント: {{ points }}</p>
+</body>
+</html>

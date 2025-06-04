@@ -28,13 +28,18 @@ python tasks.py status
 
 ## Web サーバーとして利用する
 
-`webapp.py` を実行すると Flask ベースの簡易 API サーバーが起動します。
+`webapp.py` を実行するとブラウザから利用できる簡易ウェブアプリが起動します。
 
-```
+### 起動方法
+
+```bash
+pip install -r requirements.txt
 python webapp.py
 ```
 
-デフォルトではポート `8000` で起動し、以下のエンドポイントが利用できます。
+ブラウザで `http://localhost:8000/` を開くと、タスクの一覧表示、追加、完了が行えます。
+
+デフォルトではポート `8000` で API も利用でき、以下のエンドポイントが存在します。
 
 - `GET /tasks` タスク一覧を取得
 - `POST /tasks` `{"name": "タスク名", "points": 5}` でタスクを追加
